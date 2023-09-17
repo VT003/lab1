@@ -97,20 +97,20 @@ def main():
             dest='south', default=False, help='Moves traffic in south direction')
     arg.add_argument('-r', '--remove-container', action='store_true',
             dest='rm', default=False, help='Removes container. Give name of containers')
-    (options, variable) = arg.parse_args()
+    (options, args) = arg.parse_args()
 
     if options.initialize:
-        initialize_container(variable)
+        initialize_container(args)
     elif options.ospf:
-        start_OSPF(variable)
+        start_OSPF(args)
     elif options.routes:
-        host_routes(variable)
+        host_routes(args)
     elif options.north:
         north_path()
     elif options.south:
         south_path()
     elif options.rm:
-        remove_container(variable)
+        remove_container(args)
     else:
         print("Use -h for assistance")
 
