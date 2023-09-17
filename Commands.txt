@@ -1,8 +1,8 @@
-python orchestrator.py -i ha hb r1 r2 r3
-python orchestrator.py -o r1 r2 r3
-python orchestrator.py -a ha 10.0.4.0/24 10.0.1.4
-python orchestrator.py -a hb 10.0.1.0/24 10.0.4.3
-python orchestrator.py -i r4
-python orchestrator.py -o r4
-python orchestrator.py -s
-python orchestrator.py -r r2
+python vtorchestrator.py -i ha hb r1 r2 r3
+python vtorchestrator.py -o r1 r2 r3
+python vtorchestrator.py -a ha 10.0.4.0/24 10.0.1.4
+python vtorchestrator.py -a hb 10.0.1.0/24 10.0.4.3
+python vtorchestrator.py -i r4
+python vtorchestrator.py -o r4
+python vtorchestrator.py -s
+python vtorchestrator.py -r r2
