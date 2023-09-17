@@ -1,0 +1,130 @@
+version: '3'
+
+services:
+     r1:
+          build: 
+               context: ./Dockerfiles
+               dockerfile: Dockerfile.router
+          container_name: r1
+          stdin_open: true
+          tty: true
+          cap_add:
+               - ALL
+          privileged: true
+          networks:
+               net14:
+                    ipv4_address: 10.0.1.4
+               net15:
+                    ipv4_address: 10.0.2.3
+               net17:
+                    ipv4_address: 10.0.5.3
+
+     r2:
+          build:
+               context: ./Dockerfiles
+               dockerfile: Dockerfile.router
+          container_name: r2
+          stdin_open: true
+          tty: true
+          cap_add:
+               - ALL
+          privileged: true
+          networks:
+               net15:
+                    ipv4_address: 10.0.2.4
+               net16:
+                    ipv4_address: 10.0.3.3
+
+     r3:
+          build: 
+               context: ./Dockerfiles
+               dockerfile: Dockerfile.router
+          container_name: r3
+          stdin_open: true
+          tty: true
+          cap_add:
+               - ALL
+          privileged: true
+          networks:
+               net16:
+                    ipv4_address: 10.0.3.4
+               net18:
+                    ipv4_address: 10.0.6.4
+               net19:
+                    ipv4_address: 10.0.4.3
+
+     r4:
+          build: 
+               context: ./Dockerfiles
+               dockerfile: Dockerfile.router
+          container_name: r4
+          stdin_open: true
+          tty: true
+          cap_add:
+               - ALL
+          privileged: true
+          networks:
+               net17:
+                    ipv4_address: 10.0.5.4
+               net18:
+                    ipv4_address: 10.0.6.3
+
+     ha:
+          build:
+               context: ./Dockerfiles
+               dockerfile: Dockerfile.host
+          container_name: ha
+          stdin_open: true
+          tty: true
+          cap_add:
+               - ALL
+          privileged: true
+          networks:
+               net14:
+                    ipv4_address: 10.0.1.3
+
+     hb:
+          build:
+               context: ./Dockerfiles
+               dockerfile: Dockerfile.host
+          container_name: hb
+          stdin_open: true
+          tty: true
+          cap_add:
+               - ALL
+          privileged: true
+          networks:
+               net19:
+                    ipv4_address: 10.0.4.4
+
+networks:
+     subnet_ha:
+          ipam:
+               driver: default
+               config:
+                    - subnet: 10.0.1.0/24
+     subnet_r1r2:
+          ipam:
+               driver: default
+               config:
+                    - subnet: 10.0.2.0/24
+     subnet_r2r3:
+          ipam:
+               driver: default
+               config:
+                    - subnet: 10.0.3.0/24
+     subnet_r1r4:
+          ipam:
+               driver: default
+               config:
+                    - subnet: 10.0.5.0/24
+     subnet_r4r3:
+          ipam:
+               driver: default
+               config:
+                    - subnet: 10.0.6.0/24
+     subnet_hb:
+          ipam:
+               driver: default
+               config:
+                    - subnet: 10.0.4.0/24
