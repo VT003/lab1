@@ -85,11 +85,11 @@ def remove_container(containers):
 # Main Function
 def main():
     arg = argparse.ArgumentParser()
-    arg.add_argument('-u', '--initialize-container', action='store_true',
+    arg.add_argument('-i', '--initialize-container', action='store_true',
             dest='initialize', default=False, help='Initialize container. Give names of containers')
     arg.add_argument('-o', '--ospf', action='store_true',
             dest='ospf', default=False, help='Start Zebra and OSPF. Give names of containers')
-    arg.add_argument('-p', '--add-routes', action='store_true',
+    arg.add_argument('-a', '--add-routes', action='store_true',
             dest='routes', default=False, help='Install routes on host.')
     arg.add_argument('-n', '--north', action='store_true',
             dest='north', default=False, help='Move traffic to north path')
@@ -101,7 +101,7 @@ def main():
 
     # Choose which option to follow through
     action_map = {
-        'initialize': initalize_container,
+        'initialize': initialize_container,
         'ospf': start_OSPF,
         'routes': endpoint_routes,
         'north': north_path,
@@ -113,7 +113,7 @@ def main():
     if action:
         action(variable)
     else:
-        print("Use -h for assistance")
+        print("Use -h for help")
 
 if __name__ == "__main__":
     main()
