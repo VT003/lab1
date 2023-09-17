@@ -27,7 +27,7 @@ def start_OSPF(containers):
         os.system("docker exec -it "+ dc +" service ospfd start")
 
 # Install route for hosts
-def endpoint_routes(route):
+def host_routes(route):
     print("Adding route to Hosts")
     r = "docker exec -it " + route[0] + " route add -net " + route[1] + " gw " + route[2]
     print('CMD: ' + r)
@@ -99,21 +99,20 @@ def main():
             dest='rm', default=False, help='Removes container. Give name of containers')
     (options, variable) = arg.parse_args()
 
-    # Choose which option to follow through
-    action_map = {
-        'initialize': initialize_container,
-        'ospf': start_OSPF,
-        'routes': endpoint_routes,
-        'north': north_path,
-        'south': south_path,
-        'rm': remove_container
-    }
-
-    action = action_map.get(variable.action)
-    if action:
-        action(variable)
+    if options.initialize:
+        initialize_container(variable)
+    elif options.ospf:
+        start_OSPF(variable)
+    elif options.routes:
+        host_routes(variable)
+    elif options.north:
+        north_path()
+    elif options.south:
+        south_path()
+    elif options.rm:
+        remove_container(variable)
     else:
-        print("Use -h for help")
+        print("Use -h for assistance")
 
 if __name__ == "__main__":
     main()
