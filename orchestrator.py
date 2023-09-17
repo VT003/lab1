@@ -84,7 +84,7 @@ def remove_container(containers):
 
 # Main Function
 def main():
-    arg = OptionParser()
+    arg = argparse.ArgumentParser()
     arg.add_argument('-i', '--initialize-container', action='store_true',
             dest='initialize', default=False, help='Initializes container. Give names of containers')
     arg.add_argument('-o', '--ospf', action='store_true',
