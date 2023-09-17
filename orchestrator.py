@@ -6,8 +6,8 @@ import sys
 from optparse import OptionParser
 import argparse
 
-# Initalize docker containers 
-def initalize_container(containers):
+# Initialize docker containers 
+def initialize_container(containers):
     print("Starting topology")
     build = 'docker-compose up -d'
     for dc in containers:
@@ -85,23 +85,23 @@ def remove_container(containers):
 # Main Function
 def main():
     arg = argparse.ArgumentParser()
-    arg.add_argument('-u', '--initalize-container', action='store_true',
-            dest='initalize', default=False, help='Provide container name to initalize')
+    arg.add_argument('-u', '--initialize-container', action='store_true',
+            dest='initialize', default=False, help='Initialize container. Give names of containers')
     arg.add_argument('-o', '--ospf', action='store_true',
-            dest='ospf', default=False, help='Start OSPF. Provide names as args')
+            dest='ospf', default=False, help='Start Zebra and OSPF. Give names of containers')
     arg.add_argument('-p', '--add-routes', action='store_true',
-            dest='routes', default=False, help='Install routes on host. <Host dest GW> as args')
+            dest='routes', default=False, help='Install routes on host.')
     arg.add_argument('-n', '--north', action='store_true',
             dest='north', default=False, help='Move traffic to north path')
     arg.add_argument('-s', '--south', action='store_true',
             dest='south', default=False, help='Move traffic to south path')
     arg.add_argument('-r', '--remove-container', action='store_true',
-            dest='stop', default=False, help='Remove container. Provde name as args')
+            dest='stop', default=False, help='Remove container. Give name of containers')
     variable = arg.parse_args()
 
     # Choose which option to follow through
     action_map = {
-        'intitalize': initalize_container,
+        'initialize': initalize_container,
         'ospf': start_OSPF,
         'routes': endpoint_routes,
         'north': north_path,
