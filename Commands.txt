@@ -1,11 +1,11 @@
 Lab 1: COMMANDS
 -------------------
 
-python orchestrator.py -u ha hb r1 r2 r3
+python orchestrator.py -i ha hb r1 r2 r3
 python orchestrator.py -o r1 r2 r3
-python orchestrator.py -p ha 10.0.4.0/24 10.0.1.4
-python orchestrator.py -p hb 10.0.1.0/24 10.0.4.3
-python orchestrator.py -u r4
+python orchestrator.py -a ha 10.0.4.0/24 10.0.1.4
+python orchestrator.py -a hb 10.0.1.0/24 10.0.4.3
+python orchestrator.py -i r4
 python orchestrator.py -o r4
 python orchestrator.py -n
 python orchestrator.py -s
