@@ -5,6 +5,4 @@ python orchestrator.py -a hb 10.0.1.0/24 10.0.4.3
 python orchestrator.py -i r4
 python orchestrator.py -o r4
 python orchestrator.py -s
-python orchestrator.py -n
-python orchestrator.py -s
 python orchestrator.py -r r2
