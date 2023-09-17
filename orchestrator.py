@@ -84,33 +84,33 @@ def remove_container(containers):
 
 # Main Function
 def main():
-    arg = argparse.ArgumentParser()
-    arg.add_argument('-i', '--initialize-container', action='store_true',
+    arg = OptionParser()
+    arg.add_option('-i', '--initialize-container', action='store_true',
             dest='initialize', default=False, help='Initializes container. Give names of containers')
-    arg.add_argument('-o', '--ospf', action='store_true',
+    arg.add_option('-o', '--ospf', action='store_true',
             dest='ospf', default=False, help='Starts Zebra and OSPF service. Give names of containers')
-    arg.add_argument('-a', '--add-routes', action='store_true',
+    arg.add_option('-a', '--add-routes', action='store_true',
             dest='routes', default=False, help='Installs routes on host')
-    arg.add_argument('-n', '--north', action='store_true',
+    arg.add_option('-n', '--north', action='store_true',
             dest='north', default=False, help='Moves traffic in north direction')
-    arg.add_argument('-s', '--south', action='store_true',
+    arg.add_option('-s', '--south', action='store_true',
             dest='south', default=False, help='Moves traffic in south direction')
-    arg.add_argument('-r', '--remove-container', action='store_true',
+    arg.add_option('-r', '--remove-container', action='store_true',
             dest='rm', default=False, help='Removes container. Give name of containers')
-    (options, args) = arg.parse_args()
+    (options, var) = arg.parse_var()
 
     if options.initialize:
-        initialize_container(args)
+        initialize_container(var)
     elif options.ospf:
-        start_OSPF(args)
+        start_OSPF(var)
     elif options.routes:
-        host_routes(args)
+        host_routes(var)
     elif options.north:
         north_path()
     elif options.south:
         south_path()
     elif options.rm:
-        remove_container(args)
+        remove_container(var)
     else:
         print("Use -h for assistance")
 
