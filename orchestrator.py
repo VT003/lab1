@@ -97,7 +97,7 @@ def main():
             dest='south', default=False, help='Moves traffic in south direction')
     arg.add_argument('-r', '--remove-container', action='store_true',
             dest='rm', default=False, help='Removes container. Give name of containers')
-    variable = arg.parse_args()
+    (options, variable) = arg.parse_args()
 
     # Choose which option to follow through
     action_map = {
