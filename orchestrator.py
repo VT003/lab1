@@ -86,17 +86,17 @@ def remove_container(containers):
 def main():
     arg = argparse.ArgumentParser()
     arg.add_argument('-i', '--initialize-container', action='store_true',
-            dest='initialize', default=False, help='Initialize container. Give names of containers')
+            dest='initialize', default=False, help='Initializes container. Give names of containers')
     arg.add_argument('-o', '--ospf', action='store_true',
-            dest='ospf', default=False, help='Start Zebra and OSPF. Give names of containers')
+            dest='ospf', default=False, help='Starts Zebra and OSPF service. Give names of containers')
     arg.add_argument('-a', '--add-routes', action='store_true',
-            dest='routes', default=False, help='Install routes on host.')
+            dest='routes', default=False, help='Installs routes on host')
     arg.add_argument('-n', '--north', action='store_true',
-            dest='north', default=False, help='Move traffic to north path')
+            dest='north', default=False, help='Moves traffic in north direction')
     arg.add_argument('-s', '--south', action='store_true',
-            dest='south', default=False, help='Move traffic to south path')
+            dest='south', default=False, help='Moves traffic in south direction')
     arg.add_argument('-r', '--remove-container', action='store_true',
-            dest='stop', default=False, help='Remove container. Give name of containers')
+            dest='rm', default=False, help='Removes container. Give name of containers')
     variable = arg.parse_args()
 
     # Choose which option to follow through
@@ -106,7 +106,7 @@ def main():
         'routes': endpoint_routes,
         'north': north_path,
         'south': south_path,
-        'stop': remove_container
+        'rm': remove_container
     }
 
     action = action_map.get(variable.action)
