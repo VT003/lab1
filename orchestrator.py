@@ -97,7 +97,7 @@ def main():
             dest='south', default=False, help='Moves traffic in south direction')
     arg.add_option('-r', '--remove-container', action='store_true',
             dest='rm', default=False, help='Removes container. Give name of containers')
-    (options, var) = arg.parse_var()
+    (options, var) = arg.parse_args()
 
     if options.initialize:
         initialize_container(var)
