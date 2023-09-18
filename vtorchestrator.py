@@ -46,8 +46,8 @@ def north_path():
     os.system("docker exec -it r2 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 5'"'")
 
     #For R3
-    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth0'"' -c '"'ip ospf cost 5'"'")
-    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 10'"'")
+    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 5'"'")
+    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth2'"' -c '"'ip ospf cost 10'"'")
 
     #For R4
     os.system("docker exec -it r4 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth0'"' -c '"'ip ospf cost 10'"'")
@@ -66,8 +66,8 @@ def south_path():
     os.system("docker exec -it r2 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 10'"'")
 
     #For R3
-    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth0'"' -c '"'ip ospf cost 10'"'")
-    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 5'"'")
+    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 10'"'")
+    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth2'"' -c '"'ip ospf cost 5'"'")
 
     #For R4
     os.system("docker exec -it r4 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth0'"' -c '"'ip ospf cost 5'"'")
