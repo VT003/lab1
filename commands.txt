@@ -1,0 +1,8 @@
+python master.py -s ha hb r1 r2 r3
+python master.py -z r1 r2 r3
+python master.py -a ha 10.0.4.0/24 10.0.1.4
+python master.py -a hb 10.0.1.0/24 10.0.4.3
+python master.py -s r4
+python master.py -z r4
+python master.py -s
+python master.py -d r2
