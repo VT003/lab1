@@ -24,6 +24,16 @@ def add_routes(routes):
     subprocess.run(cmd)
     print('Done Successfully')
 
+def configure_router(container, interface, cost):
+    cmd = [
+        f"configure terminal",
+        f"router ospf",
+        f"interface {interface}",
+        f"ip ospf cost {cost}"
+    ]
+    for command in cmd:
+        subprocess.run(["docker", "exec", "-it", container, "vtysh", "-c", command])
+
 def south_path():
     print('Configuring network to go through R4')
     # Configure Router R1
@@ -94,14 +104,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-def configure_router(container, interface, cost):
-    cmd = [
-        f"configure terminal",
-        f"router ospf",
-        f"interface {interface}",
-        f"ip ospf cost {cost}"
-    ]
-
-    for command in cmd:
-        subprocess.run(["docker", "exec", "-it", container, "vtysh", "-c", command])
