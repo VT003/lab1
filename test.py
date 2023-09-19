@@ -1,5 +1,6 @@
 import argparse
 import subprocess
+import os
 
 def start_container(container_names):
     print('Starting docker containers')
@@ -36,17 +37,14 @@ def configure_router(container, interface, cost):
 
 def south_path():
     print('Configuring network to go through R4')
-    # Configure Router R1
-    configure_router("r1", "eth1", 10)
-    configure_router("r1", "eth2", 5)
+    os.system("docker exec -it r1 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 10'"'")
+    os.system("docker exec -it r1 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth2'"' -c '"'ip ospf cost 5'"'")
 
-    # Configure Router R4
-    configure_router("r4", "eth0", 5)
-    configure_router("r4", "eth1", 5)
+    os.system("docker exec -it r4 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth0'"' -c '"'ip ospf cost 5'"'")
+    os.system("docker exec -it r4 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 5'"'")
 
-    # Configure Router R3
-    configure_router("r3", "eth1", 10)
-    configure_router("r3", "eth2", 5)
+    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth1'"' -c '"'ip ospf cost 10'"'")
+    os.system("docker exec -it r3 vtysh -c '"'configure terminal'"' -c '"'router ospf'"' -c '"'interface eth2'"' -c '"'ip ospf cost 5'"'")
 
 def delete_container(container_names):
     for name in container_names:
